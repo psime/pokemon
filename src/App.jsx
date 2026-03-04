@@ -35,6 +35,7 @@ function App() {
             <span>HP: <strong>{d.hp}</strong></span>
             <br></br>
             <span>Attack: <strong>{d.attack}</strong></span>
+            <br></br>
           </Card>
         ))}
       </div>
