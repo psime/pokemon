@@ -1,69 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Circle from './Circle'
-import Square from './Square'
-import Card from './Card'
+import "./App.css";
+import Card from "./Card.jsx";
+import data from "./data.jsx";
+import { getTypeColor } from "./utils.js";
 
 
 function App() {
 
-  const data = [
-  { id: 1, name: "Bulbasaur", type: "Grass", hp: 45, attack: 49 },
-  { id: 4, name: "Charmander", type: "Fire", hp: 39, attack: 52 },
-  { id: 7, name: "Squirtle", type: "Water", hp: 44, attack: 48 },
-  { id: 25, name: "Pikachu", type: "Electric", hp: 35, attack: 55 },
-  { id: 6, name: "Charizard", type: "Fire", hp: 78, attack: 84 },
-  { id: 9, name: "Blastoise", type: "Water", hp: 79, attack: 83 },
-  { id: 3, name: "Venusaur", type: "Grass", hp: 80, attack: 82 },
-  { id: 150, name: "Mewtwo", type: "Psychic", hp: 106, attack: 110 },
-  { id: 39, name: "Jigglypuff", type: "Normal", hp: 115, attack: 45 },
-  { id: 143, name: "Snorlax", type: "Normal", hp: 160, attack: 110 },
-  { id: 94, name: "Gengar", type: "Ghost", hp: 60, attack: 65 },
-  { id: 131, name: "Lapras", type: "Water", hp: 130, attack: 85 },
-  { id: 133, name: "Eevee", type: "Normal", hp: 55, attack: 55 },
-  { id: 149, name: "Dragonite", type: "Dragon", hp: 91, attack: 134 },
-  { id: 59, name: "Arcanine", type: "Fire", hp: 90, attack: 110 },
-  { id: 65, name: "Alakazam", type: "Psychic", hp: 55, attack: 50 },
-  { id: 68, name: "Machamp", type: "Fighting", hp: 90, attack: 130 },
-  { id: 76, name: "Golem", type: "Rock", hp: 80, attack: 120 },
-  { id: 130, name: "Gyarados", type: "Water", hp: 95, attack: 125 },
-  { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
-];
 
-// for (let i = 0; i < data.length; i++) {
-//   console.log(i)}
-
-  const pokes = data.map((d) => {
-  return d.id + ": " + d.name;
-});
-console.log(pokes);
 
   return (
-<>
-  <h1>Placeholder </h1>
+    <>
+      <h1>Pokemon</h1>
+      <h3>Gotta catch em all</h3>
 
-  {pokes}
+      {/* {pokes} */}
 
-             
-      {data.map((d, i) => (
-        <Card >
-          <h2>{d.name}</h2> 
-          <h3>{d.type}</h3>
-           <span>HP: {d.hp}</span>
-           </Card> 
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: 16,
+          padding: 16,
+        }}
+      >
+        {data.map((d, i) => (
+          <Card key={i} backgroundColor={getTypeColor(d.type)}>
+            <h2>{d.name}</h2>
+                <img 
+      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${d.id}.png`}
+      alt={d.name}
+      style={{ width: 120, height: 120 }}
+    />
+            <h3>{d.type}</h3>
+            <span>HP: <strong>{d.hp}</strong></span>
+            <br></br>
+            <span>Attack: <strong>{d.attack}</strong></span>
+          </Card>
+        ))}
+      </div>
 
-      ))}
-    
 
-
-  </>  
-      );
-
-
- 
-
+    </>
+  );
 }
 
-export default App
+export default App;
+
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+
+// import Circle from './Circle.jsx'
+// import Square from './Square.jsx'
+// import { data } from './data.jsx';
+
+
+  // const pokes = data.map((d) => {
+  //   return d.id + ": " + d.name;
+  // });
+  // console.log(pokes);

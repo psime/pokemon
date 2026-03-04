@@ -1,17 +1,12 @@
-const Card = ({ children }) => {
+const Card = ({ children , backgroundColor }) => {
   return (
-    <div 
-      style={{
-        border: "2px solid #000",
-        background: 'lightblue',
-        borderRadius: 18,
-        padding: 16,
-        marginTop: 20,
-        marginLeft: 200,
-        marginRight: 200,
-        backgroundColor: "white",
-      }}
-    >
+    <div style={{
+      border: "2px solid #000",
+      borderRadius: 18,
+      padding: 12,
+      paddingLeft:24,
+      backgroundColor
+    }}>
       {children}
     </div>
   );
