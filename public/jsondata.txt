@@ -1,15 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Circle from './Circle'
-import Square from './Square'
-import Card from './Card'
-
-
-function App() {
-
-  const data = [
+const    pokemons = [
   { id: 1, name: "Bulbasaur", type: "Grass", hp: 45, attack: 49 },
   { id: 4, name: "Charmander", type: "Fire", hp: 39, attack: 52 },
   { id: 7, name: "Squirtle", type: "Water", hp: 44, attack: 48 },
@@ -30,40 +19,4 @@ function App() {
   { id: 76, name: "Golem", type: "Rock", hp: 80, attack: 120 },
   { id: 130, name: "Gyarados", type: "Water", hp: 95, attack: 125 },
   { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
-];
-
-// for (let i = 0; i < data.length; i++) {
-//   console.log(i)}
-
-  const pokes = data.map((d) => {
-  return d.id + ": " + d.name;
-});
-console.log(pokes);
-
-  return (
-<>
-  <h1>Placeholder </h1>
-
-  {pokes}
-
-             
-      {data.map((d, i) => (
-        <Card >
-          <h2>{d.name}</h2> 
-          <h3>{d.type}</h3>
-           <span>HP: {d.hp}</span>
-           </Card> 
-
-      ))}
-    
-
-
-  </>  
-      );
-
-
- 
-
-}
-
-export default App
+]
