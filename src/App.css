@@ -1,8 +1,39 @@
 #root {
+  width: 100%;
   max-width: 1360px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box;
+}
+
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 250px;
+  gap: 16px;
+  padding: 16px;
+}
+
+@media (max-width: 1024px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+  .pokemon-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .logo {
