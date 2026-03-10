@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Claude / agent config
+.agents
+.claude
+CLAUDE.md
+skills
+skills-lock.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
