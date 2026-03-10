@@ -224,7 +224,7 @@ function App() {
 
       <div style={{ display: "flex", justifyContent: "center", gap: 32, marginTop: 100, paddingBottom: 48 }}>
         <a href="https://github.com/psime/pokemon" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
-          style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: "50%", backgroundColor: "#24292e", color: "#fff", textDecoration: "none", transition: "opacity 0.2s" }}
+          style={{ border: "2px solid #000", display: "flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: "50%", backgroundColor: "#24292e", color: "#fff", textDecoration: "none", transition: "opacity 0.2s" }}
           onMouseEnter={e => e.currentTarget.style.opacity = "0.8"}
           onMouseLeave={e => e.currentTarget.style.opacity = "1"}
         >
@@ -234,7 +234,7 @@ function App() {
         </a>
 
         <a href="https://www.linkedin.com/in/pete-sime/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-          style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: "50%", backgroundColor: "#0a66c2", color: "#fff", textDecoration: "none", transition: "opacity 0.2s" }}
+          style={{border: "2px solid #000" , display: "flex", alignItems: "center",  justifyContent: "center", width: 52, height: 52, borderRadius: "50%", backgroundColor: "#0a66c2", color: "#fff", textDecoration: "none", transition: "opacity 0.2s" }}
           onMouseEnter={e => e.currentTarget.style.opacity = "0.8"}
           onMouseLeave={e => e.currentTarget.style.opacity = "1"}
         >
