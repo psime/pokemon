@@ -1,6 +1,6 @@
 # Pokemon
 
-**[See Interactive Demo](https://github.com)**
+**[See Interactive Demo](https://psime.github.io/pokemon/)**
 
 A React app for browsing and filtering Pokemon cards by type, with sorting and favourites.
 

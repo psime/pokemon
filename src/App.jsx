@@ -223,7 +223,7 @@ function App() {
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", gap: 32, marginTop: 100, paddingBottom: 48 }}>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+        <a href="https://github.com/psime/pokemon/blob/main/README.md" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
           style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: "50%", backgroundColor: "#24292e", color: "#fff", textDecoration: "none", transition: "opacity 0.2s" }}
           onMouseEnter={e => e.currentTarget.style.opacity = "0.8"}
           onMouseLeave={e => e.currentTarget.style.opacity = "1"}
@@ -233,7 +233,7 @@ function App() {
           </svg>
         </a>
 
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+        <a href="https://www.linkedin.com/in/pete-sime/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
           style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: "50%", backgroundColor: "#0a66c2", color: "#fff", textDecoration: "none", transition: "opacity 0.2s" }}
           onMouseEnter={e => e.currentTarget.style.opacity = "0.8"}
           onMouseLeave={e => e.currentTarget.style.opacity = "1"}
