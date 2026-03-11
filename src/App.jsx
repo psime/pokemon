@@ -11,7 +11,7 @@ function App() {
   const uniqueTypes = [...new Set(data.map((p) => p.type))];
   const [filterSelected, setSelectedTypes] = useState([]);
   const [sortBy, setSortBy] = useState("Name");
-  const [sortOrder, setSortOrder] = useState("Lo→Hi");
+  const [sortOrder, setSortOrder] = useState("Hi→Lo");
   const [favourites, setFavourites] = useState(() => {
     try {
       const saved = localStorage.getItem("pokemon-favourites");
@@ -56,7 +56,7 @@ function App() {
         return typeCmp !== 0 ? typeCmp : a.name.localeCompare(b.name);
       }
       const key = sortBy === "Hit Points" ? "hp" : "attack";
-      const dir = sortOrder === "Hi→Lo" ? 1 : -1;
+      const dir = sortOrder === "Lo→Hi" ? 1 : -1;
       return (a[key] - b[key]) * dir;
     });
   })();
