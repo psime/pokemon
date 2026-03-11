@@ -14,7 +14,7 @@ const Card = ({ children, backgroundColor }) => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      overflow: "hidden",
+      overflow: "visible",
     }}>
       {children}
     </div>

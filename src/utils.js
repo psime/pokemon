@@ -41,3 +41,42 @@ import TypeColours from "./TypeColours.jsx";
 
 // TypeColours uses lowercase keys; data types are title-cased, so we lowercase before lookup
 export const getTypeColor = (type) => TypeColours[type.toLowerCase()] ?? "#888888";
+
+// ── Alpha config ─────────────────────────────────────────────
+// Adjust these values to control background transparency per element and mode
+export const alphaConfig = {
+  pill:     { light: 0.1,  dark: 0.15 },
+  card:     { light: 0.27, dark: 0.75 },
+  barTrack: { light: 0.12, dark: 0.25 },
+};
+
+// ── Bar radius ────────────────────────────────────────────────
+// Controls right-side corner rounding on both tracks and filled bars (left corners always square)
+// Use a plain number for px (e.g. 4.5) or a quoted string for % (e.g. "50%")
+export const barRadius = 4.5;
+// ─────────────────────────────────────────────────────────────
+
+// ── Card hover config ─────────────────────────────────────────
+export const hoverConfig = {
+  transitionMs:    880,  // hover-in duration in milliseconds
+  transitionOutMs: 2400, // hover-out fade duration in milliseconds
+  imageScale:      2.1,  // how much the sprite grows (1.0 = no change)
+  imageRiseY:      22,   // px shift (positive = down, negative = up)
+};
+// ─────────────────────────────────────────────────────────────
+
+// ── Bar track grey reference (saved for comparison) ──────────
+// border: "1px solid rgba(80,80,80,0.6)", padding: 1
+// track bg: "rgba(90,90,90,0.45)"
+// ─────────────────────────────────────────────────────────────
+
+const hexToRgba = (hex, alpha) => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+export const getPillTypeColor     = (type, isDark) => hexToRgba(getTypeColor(type), isDark ? alphaConfig.pill.dark     : alphaConfig.pill.light);
+export const getCardTypeColor     = (type, isDark) => hexToRgba(getTypeColor(type), isDark ? alphaConfig.card.dark     : alphaConfig.card.light);
+export const getBarTrackColor     = (type, isDark) => hexToRgba(getTypeColor(type), isDark ? alphaConfig.barTrack.dark : alphaConfig.barTrack.light);
