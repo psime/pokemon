@@ -29,3 +29,9 @@ skills-lock.json
 *.njsproj
 *.sln
 *.sw?
+
+#misc
+public/crumble.png
+public/rockbreak.gif
+public/rockbreak.mp4
+public/3rockimages.png

@@ -58,8 +58,8 @@ export const barRadius = 4.5;
 
 // ── Card hover config ─────────────────────────────────────────
 export const hoverConfig = {
-  transitionMs:    600,  // hover-in duration in milliseconds
-  transitionOutMs: 1800, // hover-out fade duration in milliseconds
+  transitionMs:    500,  // hover-in duration in milliseconds
+  transitionOutMs: 1600, // hover-out fade duration in milliseconds
   imageScale:      2.1,  // how much the sprite grows (1.0 = no change)
   imageRiseY:      22,   // px shift (positive = down, negative = up)
 };

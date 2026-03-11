@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import pokemonLogo from "/Pokemon_header_logo.svg";
 import "./App.css";
 import Card from "./Card.jsx";
@@ -47,6 +47,22 @@ function App() {
   const [hoveredId, setHoveredId] = useState(null);
   const [fadingOutIds, setFadingOutIds] = useState(new Set());
   const [hoveredSocial, setHoveredSocial] = useState(null);
+  const [logoPhase, setLogoPhase] = useState("idle");
+  const logoTimers = useRef([]);
+
+  const handleLogoEnter = () => {
+    if (logoPhase !== "idle") return;
+    logoTimers.current.forEach(clearTimeout);
+    setLogoPhase("shaking");
+    const t1 = setTimeout(() => setLogoPhase("breaking"), 1400);
+    logoTimers.current = [t1];
+  };
+
+  const handleLogoLeave = () => {
+    logoTimers.current.forEach(clearTimeout);
+    logoTimers.current = [];
+    setLogoPhase("idle");
+  };
 
   useEffect(() => {
     localStorage.setItem("pokemon-favourites", JSON.stringify([...favourites]));
@@ -89,8 +105,49 @@ function App() {
 
   return (
     <>
-      <img src={pokemonLogo} alt="Pokemon" style={{ height: 140 }} />
-      <h3 style={{ margin: "-8px 0 16px", fontStyle: "italic", fontWeight: "normal" }}>Which one will you catch?</h3>
+      <div
+        style={{ position: "relative", display: "inline-block", height: 140, overflow: "visible", cursor: "pointer" }}
+        onMouseEnter={handleLogoEnter}
+        onMouseLeave={handleLogoLeave}
+      >
+        <img
+          src={pokemonLogo}
+          alt="Pokemon"
+          style={{
+            height: 140,
+            visibility: logoPhase === "breaking" ? "hidden" : "visible",
+            animation: logoPhase === "shaking" ? "logoShake 1.4s ease-in-out" : "none",
+          }}
+        />
+        {logoPhase === "breaking" && <>
+          <img src={pokemonLogo} alt="" style={{ position: "absolute", left: 0, top: 0, height: 140, clipPath: "polygon(0% 0%, 55% 0%, 52% 7%, 57% 13%, 55% 20%, 61% 29%, 58% 35%, 52% 41%, 54% 48%, 49% 56%, 53% 63%, 57% 71%, 52% 79%, 55% 87%, 51% 94%, 53% 100%, 0% 100%)", animation: "logoBreakLeft 1.8s ease-in forwards" }} />
+          <img src={pokemonLogo} alt="" style={{ position: "absolute", left: 0, top: 0, height: 140, clipPath: "polygon(100% 0%, 55% 0%, 52% 7%, 57% 13%, 55% 20%, 61% 29%, 58% 35%, 52% 41%, 54% 48%, 49% 56%, 53% 63%, 57% 71%, 52% 79%, 55% 87%, 51% 94%, 53% 100%, 100% 100%)", animation: "logoBreakRight 1.8s ease-in forwards" }} />
+          {[
+            // Chips positioned at jutting points along the break line, falling straight down into the gap
+            { left: "57%", top: "10%", w: 5, h: 4, bg: "#FFCD00", dx: "-3px", dy: "68px", dr: "50deg",  delay: "1.20s", dur: "0.90s" },
+            { left: "61%", top: "26%", w: 7, h: 5, bg: "#FFCD00", dx: "-5px", dy: "72px", dr: "-65deg", delay: "1.25s", dur: "1.00s" },
+            { left: "52%", top: "38%", w: 4, h: 3, bg: "#2a2a2a", dx: "3px",  dy: "60px", dr: "80deg",  delay: "1.18s", dur: "0.85s" },
+            { left: "54%", top: "46%", w: 5, h: 4, bg: "#FFCD00", dx: "-4px", dy: "55px", dr: "-45deg", delay: "1.30s", dur: "0.80s" },
+            { left: "49%", top: "54%", w: 4, h: 4, bg: "#F5A800", dx: "4px",  dy: "48px", dr: "70deg",  delay: "1.22s", dur: "0.75s" },
+            { left: "57%", top: "68%", w: 5, h: 3, bg: "#FFCD00", dx: "-3px", dy: "40px", dr: "-55deg", delay: "1.28s", dur: "0.70s" },
+            { left: "52%", top: "76%", w: 3, h: 4, bg: "#2a2a2a", dx: "3px",  dy: "32px", dr: "40deg",  delay: "1.15s", dur: "0.65s" },
+            { left: "55%", top: "85%", w: 4, h: 3, bg: "#FFCD00", dx: "-2px", dy: "26px", dr: "-35deg", delay: "1.32s", dur: "0.58s" },
+            { left: "53%", top: "20%", w: 3, h: 3, bg: "#444",    dx: "2px",  dy: "62px", dr: "90deg",  delay: "1.35s", dur: "0.82s" },
+            { left: "58%", top: "58%", w: 3, h: 2, bg: "#F5A800", dx: "-2px", dy: "42px", dr: "-75deg", delay: "1.24s", dur: "0.68s" },
+          ].map((c, i) => (
+            <div key={i} style={{
+              position: "absolute", left: c.left, top: c.top,
+              width: c.w, height: c.h,
+              backgroundColor: c.bg,
+              borderRadius: "1px",
+              zIndex: 10,
+              "--chip-dx": c.dx, "--chip-dy": c.dy, "--chip-dr": c.dr,
+              animation: `chipCrumble ${c.dur} ease-in ${c.delay} both`,
+            }} />
+          ))}
+        </>}
+      </div>
+      <h3 style={{ margin: "20px 0 50px", fontStyle: "italic", fontWeight: "normal" }}>Which one will you catch?</h3>
 
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", padding: "0 16px 16px" }}>
         <span style={{ fontWeight: "bold", marginRight: 4 }}>Filter to:</span>
@@ -116,6 +173,7 @@ function App() {
           return (
             <button
               key={type}
+              className="btn-shake"
               onClick={() => toggleType(type)}
               style={{
                 backgroundColor: selected ? getTypeColor(type) : getPillTypeColor(type, isDark),
