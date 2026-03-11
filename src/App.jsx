@@ -45,7 +45,7 @@ function App() {
   });
   const [showFavouritesOnly, setShowFavouritesOnly] = useState(false);
   const [hoveredId, setHoveredId] = useState(null);
-  const [fadingOutId, setFadingOutId] = useState(null);
+  const [fadingOutIds, setFadingOutIds] = useState(new Set());
   const [hoveredSocial, setHoveredSocial] = useState(null);
 
   useEffect(() => {
@@ -223,26 +223,29 @@ function App() {
         {filteredList.map((d, i) => {
           const isFav = favourites.has(d.id);
           const isHovered = hoveredId === d.id;
-          const isFadingOut = fadingOutId === d.id;
+          const isFadingOut = fadingOutIds.has(d.id);
           const showGif = isHovered || isFadingOut;
           const activeTransform = `scale(${hoverConfig.imageScale}) translateY(${hoverConfig.imageRiseY}px)`;
           const imgTransition = isHovered
             ? `transform ${hoverConfig.transitionMs}ms ease`
             : isFadingOut
-              ? `opacity ${hoverConfig.transitionOutMs}ms ease, transform ${hoverConfig.transitionOutMs}ms ease`
-              : "none";
+            ? `opacity ${hoverConfig.transitionOutMs}ms ease, transform ${hoverConfig.transitionOutMs}ms ease`
+            : "none";
           return (
             <div
               key={i}
               style={{ position: "relative" }}
               onMouseEnter={() => {
-                setFadingOutId(null);
                 setHoveredId(d.id);
               }}
               onMouseLeave={() => {
                 setHoveredId(null);
-                setFadingOutId(d.id);
-                setTimeout(() => setFadingOutId(f => f === d.id ? null : f), hoverConfig.transitionOutMs);
+                setFadingOutIds(prev => new Set([...prev, d.id]));
+                setTimeout(() => setFadingOutIds(prev => {
+                  const next = new Set(prev);
+                  next.delete(d.id);
+                  return next;
+                }), hoverConfig.transitionOutMs);
               }}
             >
               <Card backgroundColor={getCardTypeColor(d.type, isDark)}>
