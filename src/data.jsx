@@ -18,8 +18,25 @@ const data = [
   { id: 68, name: "Machamp", type: "Fighting", hp: 90, attack: 130 },
   { id: 76, name: "Golem", type: "Rock", hp: 80, attack: 120 },
   { id: 130, name: "Gyarados", type: "Water", hp: 95, attack: 125 },
-  { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 }
+  { id: 148, name: "Dragonair",  type: "Dragon",   hp: 61,  attack: 84  },
 
+  // Added from Polygon best-100 list
+  { id: 35,  name: "Clefairy",  type: "Fairy",    hp: 70,  attack: 45  },
+  { id: 50,  name: "Diglett",   type: "Ground",   hp: 10,  attack: 55  },
+  { id: 104, name: "Cubone",    type: "Ground",   hp: 50,  attack: 50  },
+  { id: 129, name: "Magikarp",  type: "Water",    hp: 20,  attack: 10  },
+  { id: 134, name: "Vaporeon",  type: "Water",    hp: 130, attack: 65  },
+  { id: 135, name: "Jolteon",   type: "Electric", hp: 65,  attack: 65  },
+  { id: 136, name: "Flareon",   type: "Fire",     hp: 65,  attack: 130 },
+  { id: 196, name: "Espeon",    type: "Psychic",  hp: 65,  attack: 65  },
+  { id: 197, name: "Umbreon",   type: "Dark",     hp: 95,  attack: 65  },
+  { id: 289, name: "Slaking",   type: "Normal",   hp: 150, attack: 160 },
+  { id: 321, name: "Wailord",   type: "Water",    hp: 170, attack: 90  },
+  { id: 359, name: "Absol",     type: "Dark",     hp: 65,  attack: 130 },
+  { id: 470, name: "Leafeon",   type: "Grass",    hp: 65,  attack: 110 },
+  { id: 471, name: "Glaceon",   type: "Ice",      hp: 65,  attack: 60  },
+  { id: 568, name: "Trubbish",  type: "Poison",   hp: 50,  attack: 50  },
+  { id: 583, name: "Vanillish", type: "Ice",      hp: 51,  attack: 65  },
 ];
 
 export default data;

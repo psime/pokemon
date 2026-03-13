@@ -30,6 +30,11 @@ skills-lock.json
 *.sln
 *.sw?
 
+# Local dev / research files
+doc/
+scripts/
+src/*.backup.*
+
 #misc
 public/crumble.png
 public/rockbreak.gif
