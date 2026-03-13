@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import pokemonLogo from "/Pokemon_header_logo.svg";
+import pokemonLogo from "./assets/Pokemon_header_logo.svg";
 import "./App.css";
 import Card from "./Card.jsx";
 import data from "./data.jsx";
@@ -278,7 +278,7 @@ function App() {
       </div>
 
       <div className="pokemon-grid">
-        {filteredList.map((d, i) => {
+        {filteredList.map((d) => {
           const isFav = favourites.has(d.id);
           const isHovered = hoveredId === d.id;
           const isFadingOut = fadingOutIds.has(d.id);
@@ -291,7 +291,7 @@ function App() {
             : "none";
           return (
             <div
-              key={i}
+              key={d.id}
               style={{ position: "relative" }}
               onMouseEnter={() => {
                 setHoveredId(d.id);
